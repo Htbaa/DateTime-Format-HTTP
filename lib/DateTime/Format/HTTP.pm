@@ -124,7 +124,7 @@ HTTP protocol (and then some more).
 
 =head2 parse_datetime( $str [, $zone] )
 
-The str2time() function converts a string to machine time. It throws
+The parse_datetime() function converts a string to machine time. It throws
 an error if the format of $str is unrecognized, or the time is outside
 the representable range. The time formats recognized are listed below.
 
