@@ -84,7 +84,7 @@ for (@tests) {
 
 # test time2str
 die "time2str failed"
-    unless $class->format_datetime($time) eq 'Thu, 03 Feb 1994 00:00:00 UTC';
+    unless $class->format_datetime($time) eq 'Thu, 03 Feb 1994 00:00:00 GMT';
 
 # test the 'ls -l' format with missing year$
 # round to nearest minute 3 days ago.
