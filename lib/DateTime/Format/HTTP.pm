@@ -24,6 +24,7 @@ sub format_datetime
 sub parse_datetime
 {
     my ($self, $str, $zone) = @_;
+    local $_;
     die "No input string!" unless defined $str;
     #warn "In: [$str]\n";
 
@@ -54,6 +55,7 @@ sub parse_datetime
 	$d{time_zone} = defined $zone ? $zone : 'local';
     }
 
+    $d{second} ||= 0;
     my $frac = $d{second}; $frac -= ($d{second} = int($frac));
     my $nano = 100_000_000 * $frac; $d{nanosecond} = $nano;
     return DateTime->new( %d );
@@ -65,10 +67,12 @@ sub _parse_date
     my ($self, $str) = @_;
     my @fields = qw( year month day hour minute second time_zone );
     my %d;
-    @d{@fields} = HTTP::Date::parse_date( $str );
+    my @values = HTTP::Date::parse_date( $str );
+    die "Could not parse date [$str]\n" unless @values;
+    @d{@fields} = @values;
 
     if (defined $d{time_zone}) {
-	$d{time_zone} = "GMT" if $d{time_zone} =~ /^(Z|GMT|UTC?|[-+]?0+)$/x;
+	$d{time_zone} = "GMT" if $d{time_zone} =~ /^(Z|GMT|UTC?|[-+]?0+)$/ix;
     }
 
     return %d;

@@ -63,12 +63,9 @@ my(@tests) =
 my $time = (760233600 + $offset);  # assume broken POSIX counting of seconds
 $time = DateTime->from_epoch( epoch => $time );
 for (@tests) {
-    my $t = $class->parse_datetime($_);
-    unless (/GMT/i) {
-	$t->set_time_zone( 'GMT' );
-    }
-    my $t2 = $class->parse_datetime(lc($_))->set_time_zone("GMT");
-    my $t3 = $class->parse_datetime(uc($_))->set_time_zone("GMT");
+    my $t = $class->parse_datetime($_, /GMT/i ? () : ('GMT'));
+    my $t2 = $class->parse_datetime(lc($_) => 'GMT' );
+    my $t3 = $class->parse_datetime(uc($_) => 'GMT' );
 
     #diag "'$_'  =>  $t";
     if ($t->epoch != $time->epoch )
