@@ -1,0 +1,27 @@
+--- #YAML:1.0
+distribution_type: module
+name: DateTime-Format-HTTP
+version: 0.33
+license: perl
+
+conflicts: {}
+
+build_requires:
+  Test::More: 0.47
+recommends:
+  File::Find::Rule: 0.10
+  Test::Pod: 0.95
+requires:
+  DateTime: 0.13
+  HTTP::Date: 1.44
+
+private:
+  directory:
+    - t
+
+provides:
+  DateTime::Format::HTTP:
+    file: lib/DateTime/Format/HTTP.pm
+    version: 0.33
+
+generated_by: docmaker version 0.89
