@@ -18,7 +18,7 @@ $time = DateTime->from_epoch( epoch => $time );
 # test time2str
 {
     my $out = $class->format_datetime( $time );
-    my $wanted = 'Thu, 03 Feb 1994 00:00:00 UTC';
+    my $wanted = 'Thu, 03 Feb 1994 00:00:00 GMT';
     diag $out;
     diag $wanted;
     is ( $class->format_datetime($time) => $wanted, 'Basic' );
