@@ -1,6 +1,14 @@
 # Change log for DateTime::Format::HTTP
 
 ---
+version: 0.35
+date:    16 Aug 2003
+changes:
+   - Removed unused code.
+   - Added support section to POD.
+   - Modified wording of license section.
+
+---
 version: 0.34
 date:    07 July 2003
 changes:
