@@ -1,6 +1,8 @@
 DateTime::Format::HTTP
 
+
    date conversion routines
+
 
 For installation details, see INSTALL.
 
@@ -8,8 +10,11 @@ For usage, see the doco. Either use perldoc or view it
 on the web at:
     <http://search.cpan.org/author/SPOON/DateTime-Format-HTTP/>
 
-Changes for 0.34 (07 July 2003)
-   - Bumped up DT::TZ requirements.
+Changes for 0.35 (16 Aug 2003)
+   - Removed unused code.
+   - Added support section to POD.
+   - Modified wording of license section.
+
 
 For a complete list of changes, see the Changes file.
 
