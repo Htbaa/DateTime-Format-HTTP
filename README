@@ -1,8 +1,6 @@
 DateTime::Format::HTTP
 
-
-   date conversion routines
-
+date conversion routines
 
 For installation details, see INSTALL.
 
