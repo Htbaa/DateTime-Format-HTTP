@@ -222,8 +222,9 @@ your problem is less likely to be neglected.
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright E<copy> Iain Truskett, 2003. All rights reserved.
-Sections of the documentation E<copy> Gisle Aas, 1995-1999.
+Copyright Iain Truskett, 2003. All rights reserved.
+Sections of the documentation Gisle Aas, 1995-1999.
+Changes since version 0.35 copyright David Rolsky, 2004.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.000 or,
