@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use vars qw( $VERSION );
 
-$VERSION = '0.34';
+$VERSION = '0.35';
 
 use DateTime;
 use HTTP::Date qw();
@@ -26,7 +26,6 @@ sub parse_datetime
     my ($self, $str, $zone) = @_;
     local $_;
     die "No input string!" unless defined $str;
-    #warn "In: [$str]\n";
 
     # fast exit for strictly conforming string
     if ($str =~ /^
@@ -48,14 +47,12 @@ sub parse_datetime
     }
 
     my %d = $self->_parse_date($str);
-    die "Unable to parse date [$str]\n" unless keys %d;
 
     unless (defined $d{time_zone})
     {
 	$d{time_zone} = defined $zone ? $zone : 'local';
     }
 
-    $d{second} ||= 0;
     my $frac = $d{second}; $frac -= ($d{second} = int($frac));
     my $nano = 100_000_000 * $frac; $d{nanosecond} = $nano;
     return DateTime->new( %d );
@@ -204,23 +201,38 @@ recommended that you use C<format_isoz> or C<format_datetime> instead
 Same as format_iso(), but returns a "YYYY-MM-DD hh:mm:ssZ"-formatted
 string representing Universal Time.
 
+=head1 THANKS
+
+Gisle Aas (GAAS) for writing L<HTTP::Date>.
+
+Me, for never quite finishing C<HTTP::Date::XS>.
+
+=head1 SUPPORT
+
+Support for this module is provided via the datetime@perl.org email
+list. See http://lists.perl.org/ for more details.
+
+Alternatively, log them via the CPAN RT system via the web or email:
+
+    http://perl.dellah.org/rt/dthttp
+    bug-datetime-format-http@rt.cpan.org
+
+This makes it much easier for me to track things and thus means
+your problem is less likely to be neglected.
+
 =head1 LICENSE AND COPYRIGHT
 
 Copyright E<copy> Iain Truskett, 2003. All rights reserved.
 Sections of the documentation E<copy> Gisle Aas, 1995-1999.
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+it under the same terms as Perl itself, either Perl version 5.000 or,
+at your option, any later version of Perl 5 you may have available.
 
 The full text of the licenses can be found in the F<Artistic> and
-F<COPYING> files included with this module, or if you are using Perl
-5.8.1 or later, they can be found under L<perlartistic> and L<perlgpl>.
+F<COPYING> files included with this module, or in L<perlartistic> and
+L<perlgpl> as supplied with Perl 5.8.1 and later.
 
-=head1 THANKS
-
-Gisle Aas (GAAS) for writing L<HTTP::Date>.
-
-Me, for never quite finishing C<HTTP::Date::XS>.
 
 =head1 AUTHOR
 

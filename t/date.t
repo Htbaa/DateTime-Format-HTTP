@@ -100,10 +100,7 @@ die "time2str failed"
   my $str = sprintf("$mon %02d %02d:%02d", $mday, $hr, $min);
   my $t = $class->parse_datetime($str);
   $t = "UNDEF" unless defined $t;
-TODO: {
-  local $TODO = "ls -l format";
   ok( $t->epoch == $time ); #, "str2time ls -l: '$str'  =>  $t ($time)\n");
-}
 
 # try some garbage.
 for (undef, '', 'Garbage',
