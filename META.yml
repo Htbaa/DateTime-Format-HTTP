@@ -1,7 +1,7 @@
 --- #YAML:1.0
 distribution_type: module
 name: DateTime-Format-HTTP
-version: 0.33
+version: 0.34
 license: perl
 
 conflicts: {}
@@ -14,6 +14,7 @@ recommends:
 requires:
   DateTime: 0.13
   HTTP::Date: 1.44
+  DateTime::TimeZone: 0.23
 
 private:
   directory:

@@ -1,6 +1,12 @@
 
 ChangeLog generated directly from CVS logs.
 
+Release DateTime-Format-HTTP 0.34:
+  - Changes v1.2
+        - 0.34
+        (koschei)
+
+
 Release DateTime-Format-HTTP 0.33:
   - lib/DateTime/Format/HTTP.pm v1.3
         - Documentation updated.
@@ -14,6 +20,10 @@ Release DateTime-Format-HTTP 0.33:
   - t/date.t v1.2
   - t/time2str.t v1.2
         - Should be producing GMT not UTC
+        (koschei)
+
+  - t/date.t v1.4
+        - Warn about errors and remove failing test.
         (koschei)
 
   - Changes v1.1
