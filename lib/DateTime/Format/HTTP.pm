@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use vars qw( $VERSION );
 
-$VERSION = '0.35';
+$VERSION = '0.3501';
 
 use DateTime;
 use HTTP::Date qw();
@@ -205,7 +205,7 @@ string representing Universal Time.
 
 Gisle Aas (GAAS) for writing L<HTTP::Date>.
 
-Me, for never quite finishing C<HTTP::Date::XS>.
+Iain, for never quite finishing C<HTTP::Date::XS>.
 
 =head1 SUPPORT
 
@@ -214,7 +214,7 @@ list. See http://lists.perl.org/ for more details.
 
 Alternatively, log them via the CPAN RT system via the web or email:
 
-    http://perl.dellah.org/rt/dthttp
+    http://rt.cpan.org/NoAuth/ReportBug.html?Queue=DateTime%3A%3AFormat%3A%3AHTTP
     bug-datetime-format-http@rt.cpan.org
 
 This makes it much easier for me to track things and thus means
@@ -236,7 +236,10 @@ L<perlgpl> as supplied with Perl 5.8.1 and later.
 
 =head1 AUTHOR
 
-Iain Truskett <spoon@cpan.org>
+Originally written by Iain Truskett <spoon@cpan.org>, who died on
+December 29, 2003.
+
+Maintained by Dave Rolsky <autarch@urth.org>.
 
 =head1 SEE ALSO
 
