@@ -1,6 +1,13 @@
 # Change log for DateTime::Format::HTTP
 
 ---
+version: 0.3501
+date:    26 Jan 04
+changes:
+   - New maintainer - Dave Rolsky.
+   - Switched to Module::Build.
+
+---
 version: 0.35
 date:    16 Aug 2003
 changes:
