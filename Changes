@@ -1,28 +1,33 @@
-# Change log for DateTime::Format::HTTP
+0.36  2004-02-10
 
----
-version: 0.3501
-date:    26 Jan 04
-changes:
-   - New maintainer - Dave Rolsky.
-   - Switched to Module::Build.
+[ BACKWARDS INCOMPATIBILITY ]
 
----
-version: 0.35
-date:    16 Aug 2003
-changes:
-   - Removed unused code.
-   - Added support section to POD.
-   - Modified wording of license section.
+- The default time zone is now the floating time zone, not the local
+time zone, because we cannot determine the local time zone reliably on
+all systems.
 
----
-version: 0.34
-date:    07 July 2003
-changes:
-   - Bumped up DT::TZ requirements.
 
----
-version: 0.33
-date:    02 July 2003
-changes:
-   - Initial revision.
+0.3501  2004-01-26
+
+- New maintainer - Dave Rolsky.
+
+- Switched to Module::Build.
+
+
+0.35  2003-08-16
+
+- Removed unused code.
+
+- Added support section to POD.
+
+- Modified wording of license section.
+
+
+0.34  2004-07-07
+
+- Bumped up DT::TZ requirements.
+
+
+0.33  2003-07-02
+
+- Initial release.
