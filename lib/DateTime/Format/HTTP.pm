@@ -123,35 +123,21 @@ HTTP protocol (and then some more).
 
 =head2 parse_datetime( $str [, $zone] )
 
-The str2time() function converts a string to machine time.  It returns
-C<undef> if the format of $str is unrecognized, or the time is outside
-the representable range.  The time formats recognized are the same as
-for parse_date().
+The str2time() function converts a string to machine time. It throws
+an error if the format of $str is unrecognized, or the time is outside
+the representable range. The time formats recognized are listed below.
 
 The function also takes an optional second argument that specifies the
-default time zone to use when converting the date.  This parameter is
-ignored if the zone is found in the date string itself.  If this
-parameter is missing, and the date string format does not contain any
-zone specification, then the local time zone is assumed.
+default time zone to use when converting the date. This parameter is
+ignored if the zone is found in the date string itself. If this
+parameter is missing, and the date string format does not contain
+any zone specification, then the local time zone is assumed.
 
-If the zone is not "C<GMT>" or numerical (like "C<-0800>" or
-"C<+0100>"), then the C<Time::Zone> module must be installed in order
-to get the date recognized.
+The zone should be one that is recognized by L<DateTime::TimeZone>.
 
-=item parse_date( $str )
-
-This function will try to parse a date string, and then return it as a
-list of numerical values followed by a (possible undefined) time zone
-specifier; ($year, $month, $day, $hour, $min, $sec, $tz).  The $year
-returned will B<not> have the number 1900 subtracted from it and the
-$month numbers start with 1.
-
-In scalar context the numbers are interpolated in a string of the
-"YYYY-MM-DD hh:mm:ss TZ"-format and returned.
-
-If the date is unrecognized, then the empty list is returned.
-
-The function is able to parse the following formats:
+Actual parsing is done with the L<HTTP::Date> module. At the time of
+writing it supports the formats listed next. Consult that module's
+documentation in case the list has been changed.
 
  "Wed, 09 Feb 1994 22:23:32 GMT"       -- HTTP format
  "Thu Feb  3 17:03:55 GMT 1994"        -- ctime(3) format
@@ -217,12 +203,20 @@ string representing Universal Time.
 =head1 LICENSE AND COPYRIGHT
 
 Copyright E<copy> Iain Truskett, 2003. All rights reserved.
+Sections of the documentation E<copy> Gisle Aas, 1995-1999.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 The full text of the licenses can be found in the F<Artistic> and
-F<COPYING> files included with this module.
+F<COPYING> files included with this module, or if you are using Perl
+5.8.1 or later, they can be found under L<perlartistic> and L<perlgpl>.
+
+=head1 THANKS
+
+Gisle Aas (GAAS) for writing L<HTTP::Date>.
+
+Me, for never quite finishing C<HTTP::Date::XS>.
 
 =head1 AUTHOR
 
@@ -234,7 +228,7 @@ C<datetime@perl.org> mailing list.
 
 http://datetime.perl.org/
 
-L<perl>, L<DateTime>, L<HTTP::Date>.
+L<perl>, L<DateTime>, L<HTTP::Date>, L<DateTime::TimeZone>.
 
 =cut
 
