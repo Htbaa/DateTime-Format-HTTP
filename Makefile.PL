@@ -6,6 +6,7 @@ WriteMakefile(
 		'DateTime' => '0.13',
 		'HTTP::Date' => '1.44',
 		'Test::More' => '0.47',
+		'DateTime::TimeZone' => '0.23',
 	    },
     ($] >= 5.005 ?
       (ABSTRACT_FROM => 'lib/DateTime/Format/HTTP.pm',
