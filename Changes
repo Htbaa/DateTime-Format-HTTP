@@ -1,3 +1,10 @@
+# Change log for DateTime::Format::HTTP
+
+---
+version: 0.34
+date:    07 July 2003
+changes:
+   - Bumped up DT::TZ requirements.
 
 ---
 version: 0.33
