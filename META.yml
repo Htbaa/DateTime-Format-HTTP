@@ -15,7 +15,7 @@ recommends:
   File::Find::Rule: 0.11
   Test::Pod: 0.95
 requires:
-  DateTime: 0.1601
+  DateTime: 0.17
   HTTP::Date: 1.44
 
 private:
@@ -28,4 +28,4 @@ provides:
     version: 0.35
 
 dynamic_config: 0
-generated_by: docmaker version 0.91
+generated_by: docmaker version 1.01
