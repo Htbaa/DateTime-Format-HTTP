@@ -1,5 +1,6 @@
 \.sw.$
-\bCVS/
+\bRCS\b
+\bCVS\b
 ^_build/
 ^Build$
 ^blib/
@@ -8,7 +9,8 @@
 ^MANIFEST.bak$
 ^pm_to_blib$
 ^Makefile.[a-z]+$
-.cvsignore$
+\.cvsignore$
+\B\.svn\b
 ^diff
 ^patch
 \.patch$

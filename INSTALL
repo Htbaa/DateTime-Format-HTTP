@@ -31,7 +31,7 @@ The latest release version of DateTime::Format::HTTP can be downloaded
 from any CPAN site:
 
     http://www.cpan.org/modules/by-authors/id/S/SP/SPOON/
-    http://search.cpan.org/~SPOON/DateTime-Format-HTTP/
+    http://search.cpan.org/dist/DateTime-Format-HTTP/
 
 Interim and development versions may also be available
 from the author's web site:
@@ -42,19 +42,20 @@ DateTime::Format::HTTP is distributed as a gzipped tar archive file:
 
     DateTime-Format-HTTP-<version>.tar.gz
 
-where <version> represents the current version number, e.g. 0.34.
+where <version> represents the current version number, e.g. 0.35.
 
 To install the module, unpack the distribution archive to
 create an installation directory.  Something like this:
 
-    tar zxf DateTime-Format-HTTP-0.34.tar.gz
+    tar zxf DateTime-Format-HTTP-0.35.tar.gz
 or
-    gunzip DateTime-Format-HTTP-0.34.tar.gz
-    tar xf DateTime-Format-HTTP-0.34.tar
+    gunzip DateTime-Format-HTTP-0.35.tar.gz
+    tar xf DateTime-Format-HTTP-0.35.tar
 
 You can then 'cd' into the directory created,
 
-    cd DateTime-Format-HTTP-0.34
+    cd DateTime-Format-HTTP-0.35
+
 
 
 INSTALLING MANUALLY
@@ -123,7 +124,7 @@ If you have a copy of cpantest installed, type:
     % cpantest -g pass -nc -p `basename \`pwd\`` -auto
 
 Or:
-    % cpantest -g pass -nc -p DateTime-Format-HTTP-0.34 -auto
+    % cpantest -g pass -nc -p DateTime-Format-HTTP-0.35 -auto
 
 That will tell both me and other potential users that the module
 built correctly on your machine.

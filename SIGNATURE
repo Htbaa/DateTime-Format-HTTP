@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.22.
+signed via the Module::Signature module, version 0.33.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,28 +14,27 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 9409e1f80b5a04c79f40189fcf015bc181cf010c AUTHORS
+SHA1 90898b66d63a43b85eeb5594fbb81a2c74a21364 AUTHORS
 SHA1 7a95fc8778fbce1f60d222e0d0d1dbb6c649461f Artistic
 SHA1 531e6b5c470d4726483fd68833391653eace0a92 COPYING
 SHA1 51460de319941832c1dcaa1b3bbdc497a6d10f87 CREDITS
-SHA1 cb5e3349efd0546ab084496061a41d5dbfeec4e7 ChangeLog
-SHA1 69a43d32879c2ae89dd00cb6313448aac32d6a98 Changes
-SHA1 241de8357c170d91f15f0e7df2b3a18c6c3681dc INSTALL
-SHA1 f9df3a8d11e844cf00b91926c3a60fce30c05ff2 LICENSE
-SHA1 0dbdf69831066ed52f9fd90806047134a7274e3f MANIFEST
-SHA1 ff7942510b025f285e4023f4445fac48a4e6048d MANIFEST.SKIP
-SHA1 74dcc7f87f20224161d9a11c8fe2cf4cd862a3ed META.yml
-SHA1 175ab444481f0e5bede20e9fb8f4edf5b2a2e81f Makefile.PL
-SHA1 cff2dc98d8b79067754ae80eeb8d290dadcd02c3 README
-SHA1 79065839a2a7f2d1000c732c5837064a75c95e87 lib/DateTime/Format/HTTP.pm
-SHA1 bb7c61ed0933aa7ada9c0817fef25cba3c35d937 t/99pod.t
+SHA1 c9ec29bcc850b51d834399105e60dd928c9cf7e4 Changes
+SHA1 e0c30a0f9a9ca9a996c126a9420c098683e2bea6 INSTALL
+SHA1 9d5a8e3a4c2c78d976afd565a6e36add2c00a979 LICENSE
+SHA1 3071ba013fa74c73c1ca3a4362b1cd3b220f78e7 MANIFEST
+SHA1 b6ccb512e1afa91c445edb4be8e6d778a31ff18c MANIFEST.SKIP
+SHA1 917327858babdc6d68d5f5a0e58751e51c3f9a36 META.yml
+SHA1 36fd11f81c36244660e5fd4fd0022df596ac425c Makefile.PL
+SHA1 10c80246c23f4c42ce9ce590f80c5ac40a426cdf README
+SHA1 c0cf75a0436b0bb7c98bcaa10a26f469e1ae8e9b lib/DateTime/Format/HTTP.pm
+SHA1 a216b0928445955e2c8b48c850faef40d3328321 t/99pod.t
 SHA1 94f8fa8f925926f3c4f5043441a7f5136030feb4 t/basic.t
-SHA1 86e3ee2fbe5540f35ac059ff759c33047f45eebf t/date.t
+SHA1 0eba52edbf08e29c22712ef1eb7bdec0e81bc5e0 t/date.t
 SHA1 4d16f0f8cd203ecbbe1047b0578fd72c3e4e57a9 t/time2str.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.2.1 (GNU/Linux)
 
-iD8DBQE/CXXWzL8gm6KQWMgRAscZAJ0ec+Bh7/RssirNrOs7kZS8melNtQCeJi9G
-eZ/xu5rzUPAQtOeW6Dr49SE=
-=lT4O
+iD8DBQE/PfDHzL8gm6KQWMgRAlniAKCxmjqal3fqZXG1kpAOlN0kmJCptQCfTAaN
+iLGGiwphMH1+tZduc/IZjBg=
+=EfD6
 -----END PGP SIGNATURE-----
