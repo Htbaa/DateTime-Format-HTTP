@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 use strict;
 use lib 'inc';
-use Test::More tests => 55;
+use Test::More tests => 115;
 use vars qw( $class );
 
 BEGIN {
@@ -69,38 +69,42 @@ my(@tests) =
  '  03   Feb   1994  0:00  ',
 );
 
-my $time = (760233600 + $offset);  # assume broken POSIX counting of seconds
-$time = DateTime->from_epoch( epoch => $time );
-for (@tests) {
-    my $t = $class->parse_datetime($_, /GMT/i ? () : ('GMT'));
-    my $t2 = $class->parse_datetime(lc($_) => 'GMT' );
-    my $t3 = $class->parse_datetime(uc($_) => 'GMT' );
+{
+    my $time = (760233600 + $offset);  # assume broken POSIX counting of seconds
+    $time = DateTime->from_epoch( epoch => $time );
 
-    #diag "'$_'  =>  $t";
-    if ($t->epoch != $time->epoch )
+    for (@tests)
     {
-	diag "difference is: ".($t->epoch - $time->epoch);
+        my $t = $class->parse_datetime($_, /GMT/i ? () : ('GMT'));
+        my $t2 = $class->parse_datetime(lc($_) => 'GMT' );
+        my $t3 = $class->parse_datetime(uc($_) => 'GMT' );
+
+        #diag "'$_'  =>  $t";
+        if ($t->epoch != $time->epoch )
+        {
+            diag "difference is: ".($t->epoch - $time->epoch);
+        }
+
+        is ( $t->epoch, $time->epoch, "str2time (1): $_" );
+        is ( $t2->epoch, $time->epoch, "str2time (2): $_" );
+        is ( $t3->epoch, $time->epoch, "str2time (3): $_" );
     }
-    diag $@ if $@;
-    ok(!( (!ref $t) || $t->epoch  != $time->epoch
-			|| $t2->epoch != $time->epoch
-			|| $t3->epoch != $time->epoch
-		    ), "str2time: $_");
+
+    # test time2str
+    die "time2str failed"
+        unless $class->format_datetime($time) eq 'Thu, 03 Feb 1994 00:00:00 GMT';
 }
 
-# test time2str
-die "time2str failed"
-    unless $class->format_datetime($time) eq 'Thu, 03 Feb 1994 00:00:00 GMT';
-
-# test the 'ls -l' format with missing year$
-# round to nearest minute 3 days ago.
-  $time = int((time - 3 * 24*60*60) /60)*60;
-  my ($min, $hr, $mday, $mon) = (localtime $time)[1,2,3,4];
-  $mon = (qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec))[$mon];
-  my $str = sprintf("$mon %02d %02d:%02d", $mday, $hr, $min);
-  my $t = $class->parse_datetime($str);
-  $t = "UNDEF" unless defined $t;
-  ok( $t->epoch == $time ); #, "str2time ls -l: '$str'  =>  $t ($time)\n");
+{
+    # test the 'ls -l' format with missing year$
+    # round to nearest minute 3 days ago.
+    my $time = int((time - 3 * 24*60*60) /60)*60;
+    my ($min, $hr, $mday, $mon) = (gmtime $time)[1,2,3,4];
+    $mon = (qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec))[$mon];
+    my $str = sprintf("$mon %02d %02d:%02d", $mday, $hr, $min);
+    my $t = $class->parse_datetime($str);
+    is( $t->epoch, $time ); #, "str2time ls -l: '$str'  =>  $t ($time)\n");
+}
 
 # try some garbage.
 for (undef, '', 'Garbage',
@@ -139,6 +143,8 @@ my $conv = sub {
     my $str = shift;
     $class->format_iso( $class->parse_datetime( $str ) );
 };
+
+my $t;
 
 $t = $conv->("11-12-96  0:00AM");
 is($t => "1996-11-12 00:00:00", $t);

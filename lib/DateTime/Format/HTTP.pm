@@ -50,7 +50,7 @@ sub parse_datetime
 
     unless (defined $d{time_zone})
     {
-	$d{time_zone} = defined $zone ? $zone : 'local';
+	$d{time_zone} = defined $zone ? $zone : 'floating';
     }
 
     my $frac = $d{second}; $frac -= ($d{second} = int($frac));
@@ -132,7 +132,7 @@ The function also takes an optional second argument that specifies the
 default time zone to use when converting the date. This parameter is
 ignored if the zone is found in the date string itself. If this
 parameter is missing, and the date string format does not contain
-any zone specification, then the local time zone is assumed.
+any zone specification, then the floating time zone is used.
 
 The zone should be one that is recognized by L<DateTime::TimeZone>.
 
