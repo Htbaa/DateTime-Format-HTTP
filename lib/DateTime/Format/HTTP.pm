@@ -3,16 +3,10 @@ use strict;
 use warnings;
 use vars qw( $VERSION );
 
-
 $VERSION = '0.33';
 
 use DateTime;
 use HTTP::Date qw();
-
-#require Exporter;
-#@ISA = qw(Exporter);
-#@EXPORT = qw(time2str str2time);
-#@EXPORT_OK = qw(parse_date time2iso time2isoz);
 
 use vars qw( @MoY %MoY);
 @MoY = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
@@ -20,21 +14,16 @@ use vars qw( @MoY %MoY);
 
 sub format_datetime
 {
-    my $self = shift;
-    my $dt = shift;
+    my ($self, $dt) = @_;
     $dt = DateTime->now unless defined $dt;
-    $dt = $dt->clone->set_time_zone( 'UTC' );
-    return $dt->strftime( "%a, %d %b %Y %H:%M:%S %Z" );
-    #sprintf("%s, %02d %s %04d %02d:%02d:%02d GMT",
-    #        $mday, $MoY[$mon], $year+1900,
-    #        $hour, $min, $sec);
+    $dt = $dt->clone->set_time_zone( 'GMT' );
+    return $dt->strftime( "%a, %d %b %Y %H:%M:%S GMT" );
 }
 
 
 sub parse_datetime
 {
-    my $self = shift;
-    my $str = shift;
+    my ($self, $str, $zone) = @_;
     die "No input string!" unless defined $str;
     #warn "In: [$str]\n";
 
@@ -58,20 +47,11 @@ sub parse_datetime
     }
 
     my %d = $self->_parse_date($str);
-    use Data::Dumper;
     die "Unable to parse date [$str]\n" unless keys %d;
 
-    if (defined $d{time_zone})
+    unless (defined $d{time_zone})
     {
-	$d{time_zone} = uc $d{time_zone} if $d{time_zone} eq 'z';
-    }
-    else
-    {
-	delete $d{time_zone};
-    }
-    for (qw( hour ))
-    {
-	delete $d{$_} if $d{$_} == 0;
+	$d{time_zone} = defined $zone ? $zone : 'local';
     }
 
     my $frac = $d{second}; $frac -= ($d{second} = int($frac));
@@ -88,7 +68,7 @@ sub _parse_date
     @d{@fields} = HTTP::Date::parse_date( $str );
 
     if (defined $d{time_zone}) {
-	$d{time_zone} = "UTC" if $d{time_zone} =~ /^(GMT|UTC?|[-+]?0+)$/;
+	$d{time_zone} = "GMT" if $d{time_zone} =~ /^(Z|GMT|UTC?|[-+]?0+)$/x;
     }
 
     return %d;
@@ -99,7 +79,6 @@ sub format_iso
 {
     my ($self, $dt) = @_;
     $dt = DateTime->now unless defined $dt;
-    $dt->clone->set_time_zone( 'UTC' );
     sprintf("%04d-%02d-%02d %02d:%02d:%02d",
 	$dt->year, $dt->month, $dt->day,
 	$dt->hour, $dt->min, $dt->sec
@@ -140,25 +119,9 @@ DateTime::Format::HTTP - date conversion routines
 This module provides functions that deal the date formats used by the
 HTTP protocol (and then some more).
 
-
 =head1 METHODS
 
-=head2 parse_datetime()
-
-The parse_datetime() method converts a machine time (seconds since epoch)
-to a string.  If the function is called without an argument, it will
-use the current time.
-
-The string returned is in the format preferred for the HTTP protocol.
-This is a fixed length subset of the format defined by RFC 1123,
-represented in Universal Time (GMT).  An example of a time stamp
-in this format is:
-
-   Sun, 06 Nov 1994 08:49:37 GMT
-
-=over 4
-
-=item str2time( $str [, $zone] )
+=head2 parse_datetime( $str [, $zone] )
 
 The str2time() function converts a string to machine time.  It returns
 C<undef> if the format of $str is unrecognized, or the time is outside
@@ -226,27 +189,34 @@ matching date I<before> current month.  If the year is given with only
 2 digits, then parse_date() will select the century that makes the
 year closest to the current date.
 
-=item time2iso( [$time] )
+=head2 format_datetime()
 
-Same as time2str(), but returns a "YYYY-MM-DD hh:mm:ss"-formatted
-string representing time in the local time zone.
+The C<format_datetime()> method converts a L<DateTime> to a string. If
+the function is called without an argument, it will use the current
+time.
 
-=item time2isoz( [$time] )
+The string returned is in the format preferred for the HTTP protocol.
+This is a fixed length subset of the format defined by RFC 1123,
+represented in Universal Time (GMT).  An example of a time stamp
+in this format is:
 
-Same as time2str(), but returns a "YYYY-MM-DD hh:mm:ssZ"-formatted
+   Sun, 06 Nov 1994 08:49:37 GMT
+
+=head2 format_iso( [$time] )
+
+Same as format_datetime(), but returns a "YYYY-MM-DD hh:mm:ss"-formatted
+string representing time in the local time zone. It is B<strongly>
+recommended that you use C<format_isoz> or C<format_datetime> instead
+(as these provide time zone indication).
+
+=head2 format_isoz( [$dt] )
+
+Same as format_iso(), but returns a "YYYY-MM-DD hh:mm:ssZ"-formatted
 string representing Universal Time.
-
-
-=back
-
-=head1 SEE ALSO
-
-L<perlfunc/time>, L<Time::Zone>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright E<copy> Iain Truskett, 2003, except for the C<_parse_date>
-function which is copyrigh 1995-1999 Gisle Aas. All rights reserved.
+Copyright E<copy> Iain Truskett, 2003. All rights reserved.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
