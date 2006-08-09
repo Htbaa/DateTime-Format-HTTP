@@ -1,3 +1,9 @@
+0.37  2006-08-09
+
+- Same as previous versions, but there is no SIGNATURE file, because
+this seems to cause more trouble than it's worth. Fixes RT 17839.
+
+
 0.36  2004-02-10
 
 [ BACKWARDS INCOMPATIBILITY ]
