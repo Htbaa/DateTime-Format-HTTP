@@ -1,7 +1,8 @@
 0.37  2006-08-09
 
-- Same as previous versions, but there is no SIGNATURE file, because
-this seems to cause more trouble than it's worth. Fixes RT 17839.
+- No code changes from previous versions, but there is no SIGNATURE
+  file, because this seems to cause more trouble than it's
+  worth. Fixes RT 17839.
 
 
 0.36  2004-02-10
@@ -9,8 +10,8 @@ this seems to cause more trouble than it's worth. Fixes RT 17839.
 [ BACKWARDS INCOMPATIBILITY ]
 
 - The default time zone is now the floating time zone, not the local
-time zone, because we cannot determine the local time zone reliably on
-all systems.
+  time zone, because we cannot determine the local time zone reliably
+  on all systems.
 
 
 0.3501  2004-01-26
