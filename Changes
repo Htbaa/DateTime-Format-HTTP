@@ -1,3 +1,13 @@
+0.38  2009-04-04
+
+- No code changes from previous versions.
+
+- Shut up the verbose diagnostic output from the tests.
+
+- Fixed various bugs in the Build.PL, and generally modernized the
+  distro tarball.
+
+
 0.37  2006-08-09
 
 - No code changes from previous versions, but there is no SIGNATURE
