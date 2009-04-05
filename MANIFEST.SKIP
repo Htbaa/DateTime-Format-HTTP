@@ -2,7 +2,7 @@
 ^RCS
 ^CVS
 ,v$
-.*/\.svn.*
+\.svn.*
 ^\.hg
 
 # Avoid Makemaker generated and utility files.
