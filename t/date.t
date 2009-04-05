@@ -9,15 +9,6 @@ BEGIN {
     use_ok $class;
 }
 
-diag <<EOF;
-
-   Don't worry about the large number of error messages.
-   That's the module doing its job.
-
-   Worry about actual test failures.
-
-EOF
-
 require Time::Local if $^O eq "MacOS";
 my $offset = ($^O eq "MacOS") ? Time::Local::timegm(0,0,0,1,0,70) : 0;
 
@@ -106,38 +97,22 @@ my(@tests) =
     is( $t->epoch, $time ); #, "str2time ls -l: '$str'  =>  $t ($time)\n");
 }
 
-# try some garbage.
 for (undef, '', 'Garbage',
      'Mandag 16. September 1996',
-#     'Thu Feb  3 00:00:00 CET 1994',
-#     'Thu, 03 Feb 1994 00:00:00 CET',
-#     'Wednesday, 31-Dec-69 23:59:59 GMT',
-
      '1980-00-01',
      '1980-13-01',
      '1980-01-00',
      '1980-01-32',
      '1980-01-01 25:00:00',
      '1980-01-01 00:61:00',
-     #'1980-01-01 00:00:61',
     )
 {
-    my $bad = 0;
-    eval {
-	if (defined $class->parse_datetime($_)) {
-	    diag "str2time($_) is not undefined\n";
-	    $bad++;
-	}
-    };
-    diag $@ if $@;
-    ok( !$bad, defined $_ ? "'$_'" : "undef" );
+    my $desc = defined $_ ? "'$_'" : "undef";
+    $desc .= ' does not parse';
+
+    my $ok = ! defined eval { $class->parse_datetime($_) };
+    ok( $ok, $desc );
 }
-
-diag "Testing AM/PM gruff...\n";
-
-# Test the str2iso routines
-
-diag "Testing time2iso functions\n";
 
 my $conv = sub {
     my $str = shift;
@@ -179,10 +154,9 @@ ok(
 
 $a = $class->format_iso( );
 $b = $class->format_iso( DateTime->from_epoch( epoch => 500000 ) );
-diag "LOCAL $a  $b\n";
+
 my $az = $class->format_isoz( );
 my $bz = $class->format_isoz( DateTime->from_epoch( epoch => 500000 ) );
-diag "GMT   $az $bz\n";
 
 for ($a,  $b)  {
   like( $_ => qr/^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d$/, "time2iso($_)" );
@@ -190,17 +164,3 @@ for ($a,  $b)  {
 for ($az, $bz) {
   like( $_ => qr/^\d{4}-\d\d-\d\d \d\d:\d\d:\d\dZ$/, "time2isoz($_)" );
 }
-
-## Test the parse_date interface
-#
-#my @d = parse_date("Jan 1 2001");
-#
-#ok(!( defined(pop(@d)) || "@d" ne "2001 1 1 0 0 0" ), "Parse to list");
-#
-## This test will break around year 2070
-#ok( parse_date("03-Feb-20") eq "2020-02-03 00:00:00", "Parse to scalar, >y2k" );
-#
-## This test will break around year 2048
-#ok( parse_date("03-Feb-98") eq "1998-02-03 00:00:00", "Parse to scalar" );
-
-diag "DateTime::Format::HTTP $DateTime::Format::HTTP::VERSION\n";
