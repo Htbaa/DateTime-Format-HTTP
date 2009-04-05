@@ -5,7 +5,8 @@
 - Shut up the verbose diagnostic output from the tests.
 
 - Fixed various bugs in the Build.PL, and generally modernized the
-  distro tarball.
+  distro tarball. Hopefully this will fix problems some cpan testers
+  were seeing.
 
 
 0.37  2006-08-09
