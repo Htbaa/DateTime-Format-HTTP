@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use vars qw( $VERSION );
 
-$VERSION = '0.37';
+$VERSION = '0.38';
 
 use DateTime;
 use HTTP::Date qw();
