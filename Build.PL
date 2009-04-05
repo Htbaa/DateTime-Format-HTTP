@@ -9,5 +9,6 @@ Module::Build->new( module_name => 'DateTime::Format::HTTP',
                                      'HTTP::Date' => '1.44',
                                      'Test::More' => '0.47',
                                    },
+                    sign               => 1,
                     create_makefile_pl => 'traditional',
                   )->create_build_script;
