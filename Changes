@@ -1,3 +1,8 @@
+0.38_01  2010-06-28
+
+- Making sure the nanosecond is a integer, and not a float making the creation
+  of a DateTime object fail. Fixes RT 58854 (Christiaan Kras)
+
 0.38  2009-04-05
 
 - No code changes from previous versions.

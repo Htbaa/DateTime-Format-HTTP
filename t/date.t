@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 use strict;
 use lib 'inc';
-use Test::More tests => 115;
+use Test::More tests => 116;
 use vars qw( $class );
 
 BEGIN {
@@ -149,6 +149,13 @@ my $dt = $class->parse_datetime("2000-01-01 00:00:01.234");
 $t = $dt->epoch;
 ok(
     abs(($t - int($t)) - 0.234) > 0.000001,
+    "FRAC $t = ".$class->format_iso($dt)
+);
+
+$dt = $class->parse_datetime("2010-06-26T15:14:33.400753");
+$t = $dt->epoch;
+ok(
+    abs(($t - int($t)) - 0.400753) > 0.000001,
     "FRAC $t = ".$class->format_iso($dt)
 );
 

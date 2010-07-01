@@ -54,7 +54,7 @@ sub parse_datetime
     }
 
     my $frac = $d{second}; $frac -= ($d{second} = int($frac));
-    my $nano = 100_000_000 * $frac; $d{nanosecond} = $nano;
+    my $nano = 100_000_000 * $frac; $d{nanosecond} = int($nano);
     return DateTime->new( %d );
 }
 
