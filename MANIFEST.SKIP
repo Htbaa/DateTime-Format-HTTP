@@ -2,7 +2,7 @@
 ^RCS
 ^CVS
 ,v$
-\.svn.*
+\.git.*
 ^\.hg
 
 # Avoid Makemaker generated and utility files.
@@ -39,4 +39,4 @@
 ^DateTime-Format-HTTP-
 
 # No need to ship this
-\.shipit
+^MYMETA.yml$
