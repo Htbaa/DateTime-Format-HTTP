@@ -240,7 +240,7 @@ L<perlgpl> as supplied with Perl 5.8.1 and later.
 Originally written by Iain Truskett <spoon@cpan.org>, who died on
 December 29, 2003.
 
-Maintained by Dave Rolsky <autarch@urth.org>.
+Maintained by Dave Rolsky <autarch@urth.org> and Christiaan Kras <ckras@cpan.org>
 
 =head1 SEE ALSO
 
