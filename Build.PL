@@ -3,7 +3,7 @@ use strict;
 use Module::Build;
 
 Module::Build->new( module_name => 'DateTime::Format::HTTP',
-                    dist_author => 'Dave Rolsky <autarch@urth.org>',
+                    dist_author => 'Christiaan Kras <ckras@cpan.org>',
                     license     => 'perl',
                     requires    => { 'DateTime'   => '0.17',
                                      'HTTP::Date' => '1.44',
