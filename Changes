@@ -1,3 +1,8 @@
+0.39  2010-07-03
+
+- No code changes from previous versions.
+
+
 0.38_01  2010-07-01
 
 - Making sure the nanosecond is a integer, and not a float making the creation
@@ -5,6 +10,7 @@
   
 - Repository moved from Subversion to Git. The repository can be located at
   git://github.com/Htbaa/DateTime-Format-HTTP.git
+
 
 0.38  2009-04-05
 
