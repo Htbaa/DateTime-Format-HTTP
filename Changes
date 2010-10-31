@@ -1,3 +1,8 @@
+0.40  2010-10-31
+
+- format_isoz now actually changes the time zone. Fixes RT 62332 (DOUGDUDE)
+
+
 0.39  2010-07-03
 
 - No code changes from previous versions.

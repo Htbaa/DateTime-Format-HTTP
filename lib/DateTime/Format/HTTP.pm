@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use vars qw( $VERSION );
 
-$VERSION = '0.39';
+$VERSION = '0.40';
 
 use DateTime;
 use HTTP::Date qw();
@@ -91,7 +91,7 @@ sub format_isoz
 {
     my ($self, $dt) = @_;
     $dt = DateTime->now unless defined $dt;
-    $dt->clone->set_time_zone( 'UTC' );
+    $dt = $dt->clone->set_time_zone( 'UTC' );
     sprintf("%04d-%02d-%02d %02d:%02d:%02dZ",
 	$dt->year, $dt->month, $dt->day,
 	$dt->hour, $dt->min, $dt->sec

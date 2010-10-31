@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 use strict;
 use lib 'inc';
-use Test::More tests => 116;
+use Test::More tests => 118;
 use vars qw( $class );
 
 BEGIN {
@@ -170,4 +170,26 @@ for ($a,  $b)  {
 }
 for ($az, $bz) {
   like( $_ => qr/^\d{4}-\d\d-\d\d \d\d:\d\d:\d\dZ$/, "time2isoz($_)" );
+}
+
+{
+    # format_isoz must output date in UTC
+    my $eastern_date = DateTime->new(
+        year   => 2010,
+        month  => 10,
+        day    => 21,
+        hour   => 13,
+        minute => 8,
+        second => 23,
+        time_zone => 'America/New_York',
+    );
+
+    # Get the ISO "Z" format of the eastern zone date time
+    my $isoz = $class->format_isoz($eastern_date);
+
+    # Get the actual UTC date time
+    my $utc = $eastern_date->clone->set_time_zone('UTC');
+
+    is($isoz, $class->format_isoz($utc), 'format_isoz converts to UTC time zone');
+    is($eastern_date->time_zone->name, 'America/New_York', 'format_isoz does not modify input date\'s time zone');
 }
