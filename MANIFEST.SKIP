@@ -40,3 +40,4 @@
 
 # No need to ship this
 ^MYMETA.yml$
+^MYMETA\.json$

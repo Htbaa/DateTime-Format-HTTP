@@ -1,3 +1,8 @@
+0.42  2014-05-02
+
+- Forgot to properly update the version number...
+
+
 0.41  2014-05-02
 
 - Fix out-by-ten bug in nanosecond computation (Stephen Thirlwall)
