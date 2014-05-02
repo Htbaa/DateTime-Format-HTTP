@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 use strict;
 use lib 'inc';
-use Test::More tests => 118;
+use Test::More tests => 131;
 use vars qw( $class );
 
 BEGIN {
@@ -151,6 +151,8 @@ ok(
     abs(($t - int($t)) - 0.234) > 0.000001,
     "FRAC $t = ".$class->format_iso($dt)
 );
+is($dt->microsecond, 234_000, '.234s == 234_000us');
+is($dt->nanosecond, 234_000_000, '.234s == 234_000_000ns');
 
 $dt = $class->parse_datetime("2010-06-26T15:14:33.400753");
 $t = $dt->epoch;
@@ -158,6 +160,13 @@ ok(
     abs(($t - int($t)) - 0.400753) > 0.000001,
     "FRAC $t = ".$class->format_iso($dt)
 );
+is($dt->microsecond, 400_753, '.400753s == 400_753us');
+is($dt->nanosecond, 400_753_000, '.400753s == 400_753_000ns');
+
+for my $ns (qw(1 12 123 1234 499999999 500000000 500000001 999753123 999999999)) {
+    $dt = $class->parse_datetime(sprintf("2010-06-26T15:14:33.%09d", $ns));
+    is($dt->nanosecond, $ns, ".${ns}s == ${ns}ns");
+}
 
 $a = $class->format_iso( );
 $b = $class->format_iso( DateTime->from_epoch( epoch => 500000 ) );

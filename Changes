@@ -1,3 +1,8 @@
+0.41  2014-05-02
+
+- Fix out-by-ten bug in nanosecond computation (Stephen Thirlwall)
+
+
 0.40  2010-10-31
 
 - format_isoz now actually changes the time zone. Fixes RT 62332 (DOUGDUDE)
