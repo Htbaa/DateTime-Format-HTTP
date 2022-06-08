@@ -28,11 +28,7 @@ jobs:
           perl-version: '5.34'
       - run: perl -V
       - run: cpanm --installdeps -n .
+      - run: cpanm -n Test::POD Test::POD::Coverage
       - run: prove -lv
-#       - run: cpanm Module::Build
-#       - run: |
-#           perl Build.PL
-#           chmod +x Build
-#           ./Build installdeps
-#       - name: Run tests
-#         run: ./Build test
+        env:
+          IS_MAINTAINER: 1
