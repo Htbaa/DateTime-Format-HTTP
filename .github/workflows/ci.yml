@@ -27,10 +27,12 @@ jobs:
         with:
           perl-version: '5.34'
       - run: perl -V
-      - run: cpanm Module::Build
-      - run: |
-          perl Build.PL
-          chmod +x Build
-          ./Build installdeps
-      - name: Run tests
-        run: ./Build test
+      - run: cpanm --installdeps -n .
+      - run: prove -lv
+#       - run: cpanm Module::Build
+#       - run: |
+#           perl Build.PL
+#           chmod +x Build
+#           ./Build installdeps
+#       - name: Run tests
+#         run: ./Build test
