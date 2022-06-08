@@ -21,15 +21,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup perl
-      uses: shogo82148/actions-setup-perl@v1
-      with:
-        perl-version: '5.34'
-    - run: perl -V
-    - run: |
-        perl Build.PL
-        chmod +x Build
-        ./Build installdeps
-    - name: Run tests
-    - run: ./Build test
+      - uses: actions/checkout@v3
+      - name: Setup perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: '5.34'
+      - run: perl -V
+      - run: |
+          perl Build.PL
+          chmod +x Build
+          ./Build installdeps
+      - name: Run tests
+      - run: ./Build test
